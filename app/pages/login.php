@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </form>
   <div class="auth-links">
     <p>New Vendor? <a href="<?= APP_BASE_URL ?>/index.php?route=vendor/onboard">Start Onboarding</a></p>
-    <p>New Distributor? <a href="#">Register (coming soon)</a></p>
+    <p>New Distributor? <a href="<?= APP_BASE_URL ?>/index.php?route=distributor/register">Register</a></p>
   </div>
 </section>
 <?php include __DIR__ . '/../partials/footer.php'; ?>

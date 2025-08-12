@@ -85,6 +85,9 @@ switch ($route) {
         require_role(USER_ROLE_DISTRIBUTOR);
         render(__DIR__ . '/../app/pages/distributor/profile.php');
         break;
+    case 'distributor/register':
+        render(__DIR__ . '/../app/pages/distributor/register.php');
+        break;
 
     // Common routes
     case 'browse':

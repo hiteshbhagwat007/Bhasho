@@ -12,7 +12,8 @@ $role = current_user_role();
           <li><a href="<?= APP_BASE_URL ?>/index.php?route=browse">Categories</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
-          <li><a class="btn" href="<?= APP_BASE_URL ?>/index.php?route=login">Login/Register</a></li>
+          <li><a href="<?= APP_BASE_URL ?>/index.php?route=login">Login</a></li>
+          <li><a class="btn" href="<?= APP_BASE_URL ?>/index.php?route=distributor/register">Register</a></li>
         <?php elseif ($role === USER_ROLE_ADMIN): ?>
           <li><a href="<?= APP_BASE_URL ?>/index.php?route=admin/dashboard">Dashboard</a></li>
           <li><a href="<?= APP_BASE_URL ?>/index.php?route=admin/vendors">Vendors</a></li>
