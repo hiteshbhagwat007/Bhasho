@@ -1,0 +1,68 @@
+flowchart LR
+  %% Swimlanes via subgraphs
+  subgraph Admin
+    ALogin[Admin Login]
+    ADash[Admin Dashboard]
+    AVendors[Manage Vendors]
+    AProducts[Approve Products]
+    AEnquiries[Oversee Enquiries]
+    AAnalytics[Analytics]
+    ASettings[Settings]
+  end
+
+  subgraph Vendor
+    VLogin[Vendor Login]
+    VDash[Vendor Dashboard]
+    VStep1[Account]
+    VStep2[Brand Details]
+    VStep3[KYC & Bank]
+    VStep4[Product Catalog]
+    VStep5[Agreement & Submit]
+    VProducts[Manage Products]
+    VEnquiries[Respond to Enquiries]
+  end
+
+  subgraph Distributor
+    DLogin[Distributor Login]
+    DDash[Distributor Dashboard]
+    DBrowse[Browse Products]
+    DEnquiryList[Enquiry List]
+    DSubmit[Submit Enquiry]
+    DMyEnquiries[My Enquiries]
+  end
+
+  %% Start to dashboards
+  ALogin --> ADash
+  VLogin --> VDash
+  DLogin --> DDash
+
+  %% Onboarding Stepper
+  VDash --> VStep1 --> VStep2 --> VStep3 --> VStep4 --> VStep5 --> VProducts
+
+  %% Enquiry Flow
+  DBrowse --> DEnquiryList --> DSubmit --> VEnquiries
+  VEnquiries -->|Offer/Quote| DMyEnquiries
+  DMyEnquiries -->|Accept/Reject/Revision| VEnquiries
+
+  %% Admin oversight
+  ADash --> AVendors -->|Approve| VDash
+  ADash --> AProducts -->|Approve/Reject| DBrowse
+  ADash --> AEnquiries
+  ADash --> AAnalytics
+  ADash --> ASettings
+
+  %% Data stores
+  subgraph Databases
+    UDB[(User DB)]
+    PDB[(Product DB)]
+    EDB[(Enquiry DB)]
+  end
+
+  ALogin --> UDB
+  VLogin --> UDB
+  DLogin --> UDB
+  VProducts --> PDB
+  DBrowse --> PDB
+  DSubmit --> EDB
+  VEnquiries --> EDB
+  AEnquiries --> EDB
